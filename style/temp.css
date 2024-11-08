@@ -1,0 +1,107 @@
+/* General container styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url('/img/monitor_aule_Info_page-0002.jpg'); 
+    font-family: Arial, sans-serif;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+/* Main grid container */
+.container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto;
+    height: 100vh;
+    gap: 10px;
+    padding: 20px;
+}
+
+/* Lesson block styling */
+.lesson-container {
+    grid-column: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+.lesson-time {
+    font-size: 36pt;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.lesson-name {
+    font-size: 30pt;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.instructor-name {
+    font-size: 24pt;
+    color: #000;
+    margin-top: 5px;
+}
+
+/* News block styling */
+.news-container {
+    grid-column: 2 / 3;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+.news-author {
+    font-size: 24pt;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.news-meta {
+    font-size: 20pt;
+    display: flex;
+    justify-content: space-between;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.news-date {
+    text-align: left;
+}
+
+.news-time {
+    text-align: right;
+}
+
+.news-message {
+    font-size: 18pt;
+    color: #000;
+    overflow: hidden;
+    max-height: 500px; /* Limit height to avoid overflowing */
+    white-space: normal; /* Allow multiline */
+}
+
+/* Scroll animation for news if needed */
+.scrolling {
+    overflow: hidden;
+    display: block;
+    animation: scrollVertical 15s linear infinite;
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
