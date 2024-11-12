@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginxfile:latest # Your Nginx image name
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./html:/usr/share/nginx/html        # Mount your static files
+    depends_on:
+    
+      - lessons
+      - telegrambot
+    networks:
+      - project-network
+
+  lessons:
+    image: lessons  # Your lessons API image name
+    ports:
+      - "5000:5000"
+    networks:
+      - project-network 
+
+    command: flask run --host=0.0.0.0 --reload
+
+
+  telegrambot:
+    image: telegrambot  # Your Telegram bot API image name
+    ports:
+      - "8080:8080"
+    networks:
+      - project-network
+
+
+
+
+networks:
+  project-network:
+    driver: bridge

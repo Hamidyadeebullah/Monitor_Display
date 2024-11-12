@@ -1,0 +1,184 @@
+/* General styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    background-image: url('/img/monitor_aule_Info_page-0002.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Main grid container */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Each column takes half the screen */
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+    gap: 10px;
+}
+
+/* Classroom Name Block */
+.classroom-container {
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.classroom h1 {
+    margin-top: 200px;
+    font-size: 70pt;
+    color: #000;
+    text-align: center;
+}
+.no-classes {
+    font-size: 36pt;
+    color: #000000;
+    text-align: center;
+    margin-left: 150px;
+}
+
+/* Lesson Schedule Block */
+.lesson-container {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.lesson-schedule {
+    padding-top: 20px;
+    padding-left: 20px;
+    text-align: left;
+}
+
+#lesson-list {
+    margin-top: -100px;
+    padding-left: 0;
+    list-style: none;
+    text-align: left;
+}
+
+/* Lesson Item Styling */
+.lesson-time {
+    font-size: 48pt;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 5px;
+}
+
+.lesson-name,
+.instructor-name {
+    font-size: 36pt;
+    color: #000;
+    margin-bottom: 3px;
+}
+.instructor-name {
+    text-align: right;
+}
+
+/* News Container */
+.news-container {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* News Content Positioning */
+#news-content {
+    padding-top: 20px;
+    font-size: 36px;
+    max-width: 100%;
+}
+
+/* News Item Styling */
+.news-author, .news-meta, .news-message {
+    font-size: 36pt;
+    color: #000;
+    padding-bottom: 70px;
+}
+
+
+.news-author {
+    font-weight: bold;
+    margin-bottom: 5px;
+    padding-left: 340px;
+    margin-top: -50px;
+}
+
+.news-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.news-message {
+    height: 100px; /* Fixed visible height */
+    overflow: hidden; /* Hide any overflow content */
+    position: relative;
+    white-space: normal;
+}
+
+/* Scrolling Effect for Long Messages */
+.scrolling {
+    display: inline-block;
+    height: 100%;
+    overflow-y: scroll;
+    animation: scrollTextVertical 15s linear infinite;
+}
+
+@keyframes scrollTextVertical {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .container {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    .classroom h1 {
+        font-size: 60pt;
+    }
+    .lesson-time,
+    .lesson-name,
+    .instructor-name,
+    .news-author,
+    .news-meta,
+    .news-message {
+        font-size: 32pt;
+    }
+}
+
+@media (max-width: 768px) {
+    .classroom h1 {
+        font-size: 50pt;
+    }
+    .lesson-time,
+    .lesson-name,
+    .instructor-name,
+    .news-author,
+    .news-meta,
+    .news-message {
+        font-size: 24pt;
+    }
+}
