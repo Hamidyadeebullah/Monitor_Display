@@ -1,39 +1,36 @@
-version: '3.8'
-
 services:
   nginx:
-    image: nginxfile:latest # Your Nginx image name
+    image: nginxfile:latest
     ports:
       - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./html:/usr/share/nginx/html        # Mount your static files
+      - ./html:/usr/share/nginx/html
     depends_on:
-    
       - lessons
-      - telegrambot
+      - telegram1
     networks:
       - project-network
 
   lessons:
-    image: lessons  # Your lessons API image name
+    image: lessons
     ports:
       - "5000:5000"
     networks:
-      - project-network 
-
+      - project-network
     command: flask run --host=0.0.0.0 --reload
 
-
-  telegrambot:
-    image: telegrambot  # Your Telegram bot API image name
+  telegram1:
+    image: telegram1
     ports:
       - "8080:8080"
     networks:
       - project-network
-
-
-
+    environment:
+      - API_ID=12594042
+      - API_HASH=9b0ecaee68f5e9a55dfd949e0a862c53
+      - PROFANITY=ON
+      - SESSION_STRING=1BVtsOG4Bu5htLkOfAWihpmHYK1Ifx9O7RhYvzp5MCtyZRW2TXQBSBHpzHlyU-q4oKeL8tiFeQZX1hoxh_j2mYvc6kZD7iAJRlzISgvDZXAfA23FmdhGHOxBZ4CkWx9tjo75lRHpY9j2ZYXkGVaLC3ykocBvi2_NNAWHsDw0uytMGjcsTcssgP6U0Vqpj_uZZjIKM0inDaWjwnGgO3mlRKN6mI-oA6ZjX7hTjkJOSUpNFMcXONp719PqewW21YLK3IAx6sGy26Vf9at0XNTa174QKt6XxK9DCV1ol1zBwyLWlMZRLoG8HH-Xfycq27r4QiLdP_digtZ2pmv5jCY_XyMieSTCs3n0=
 
 networks:
   project-network:
