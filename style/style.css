@@ -73,6 +73,15 @@ body, html {
     font-size: 36px; /* Adjust based on text visibility */
 }
 
+#lesson-list li:nth-of-type(1){
+     /* Change to your desired color */
+}
+
+/* Second lesson name */
+#lesson-list li:nth-of-type(2){
+    background-color: #c3c3c3; /* Change to your desired color */
+}
+
 /* First lesson name */
 #lesson-list li:nth-of-type(1) .lesson-name {
     color: #000000; /* Change to your desired color */
