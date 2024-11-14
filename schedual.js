@@ -51,11 +51,7 @@ function fetchLessonSchedule() {
         .catch(error => {
             console.error("Unable to fetch the data:", error);
             const lessonList = document.getElementById("lesson-list");
-<<<<<<< HEAD
-            lessonList.innerHTML = '<li class="no-classes">No classes available</li>';
-=======
             lessonList.innerHTML = "<li>No classes available</li>";
->>>>>>> a5a21e6337f8d469b49b5007d0771ed99d4f6cf1
         });
 }
 

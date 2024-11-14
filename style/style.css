@@ -3,23 +3,6 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-<<<<<<< HEAD
-    width: 100%;
-    font-family: Arial, sans-serif;
-    background-image: url('/img/monitor_aule_Info_page-0002.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* Main grid container */
-.container {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Each column takes half the screen */
-    grid-template-rows: auto 1fr;
-    height: 100vh;
-    gap: 10px;
-=======
     width: 100%; 
     font-family: Arial, sans-serif;
     background-image: url('/img/monitor_aule_Info_page-0002.jpg'); 
@@ -51,25 +34,18 @@ body, html {
     justify-content: center;
     align-items: center;
     text-align: center;
->>>>>>> a5a21e6337f8d469b49b5007d0771ed99d4f6cf1
 }
 
 /* Classroom Name Block */
 .classroom-container {
-<<<<<<< HEAD
     grid-column: span 2;
     display: flex;
     justify-content: center;
     align-items: center;
-=======
-    grid-column: span 2; /* Span across both columns */
-
->>>>>>> a5a21e6337f8d469b49b5007d0771ed99d4f6cf1
 }
 
 .classroom h1 {
     margin-top: 200px;
-<<<<<<< HEAD
     font-size: 70pt;
     color: #000;
     text-align: center;
@@ -79,45 +55,10 @@ body, html {
     color: #000000;
     text-align: center;
     margin-left: 150px;
-=======
-    margin-bottom: 5px;
-    font-size: 70pt;
-    color: #000000;
-}
-
-/* Style for the time of the lesson */
-.lesson-time {
-    padding-left: 30px;
-    text-align: left;
-    font-size: 48pt; 
-    font-weight: bold; /* Make the time bold */
-    color: #000;
-    margin-bottom: 5px; /* Add some space below the time */
-}
-
-/* Style for the name of the lesson */
-.lesson-name {
-    margin-right: auto;
-    padding-left: 30px;
-    text-align: left;
-    font-size: 36pt;
-    color: #000000;
-    margin-bottom: 3px; /* Add some space below the lesson name */
-}
-
-/* Style for the instructor name */
-.instructor-name {
-    padding-right: 20px;
-    font-size: 36pt; /* Smaller size for instructor */
-    color: #000000;
-    text-align: right; /* Align the instructor name to the right */
-    margin-top: 5px; /* Add some space above the instructor name */
->>>>>>> a5a21e6337f8d469b49b5007d0771ed99d4f6cf1
 }
 
 /* Lesson Schedule Block */
 .lesson-container {
-<<<<<<< HEAD
     grid-column: 1;
     grid-row: 2;
     padding: 20px;
@@ -257,17 +198,3 @@ body, html {
         font-size: 24pt;
     }
 }
-=======
-
-    justify-content: stretch;
-    flex-direction: row;
-    align-items: stretch;
-    grid-template-rows: 1fr 1fr;
-    display: grid;
-    padding-bottom: 230px;
-    grid-column: 1 / 2; /* Occupies the first column */
-    grid-row: 2 / 3;
-    padding-right: 20px; /* Add some spacing between lesson and news */
-}
-
->>>>>>> a5a21e6337f8d469b49b5007d0771ed99d4f6cf1
