@@ -44,7 +44,7 @@ To run this project using Docker, follow these steps:
  ```bash
 docker-compose up
 ```
-6. then open the url  (http://localhost/index.html?aula=class_id&edificio=building_id)!
+6. then open the url  (http://localhost/index.html?aula=class_id&edificio=building_id&classroom=a_valid_name_of_classroom_from_the_list_in_scheduale.js)!
 
 ## Contribution
 
