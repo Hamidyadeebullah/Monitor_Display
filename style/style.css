@@ -3,37 +3,21 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    width: 100%; 
+    width: 100%;
     font-family: Arial, sans-serif;
-    background-image: url('/img/monitor_aule_Info_page-0002.jpg'); 
-    background-size: cover; 
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Prevent repeating the image */
+    background-image: url('/img/monitor_aule_Info_page-0002.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
-
-#lesson-list {
-    list-style-type: none; /* This removes the bullet points */
-
-}
-
-
 
 /* Main grid container */
 .container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 2fr; /* Automatically adjust row heights */
+    grid-template-columns: 1fr 1fr; /* Each column takes half the screen */
+    grid-template-rows: auto 1fr;
     height: 100vh;
-    padding: 20px;
-
-}
-
-/* Blocks styling */
-.block {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    gap: 10px;
 }
 
 /* Classroom Name Block */
@@ -71,12 +55,54 @@ body, html {
 }
 
 .lesson-schedule {
+    font-size: 14px;
     padding-top: 20px;
     padding-left: 20px;
     text-align: left;
 }
 
+.lesson-schedule .instructor-name {
+    font-size: 36px;
+    color: #000;
+    margin-bottom: 3px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.lesson-schedule .lesson-name {
+    font-size: 36px; /* Adjust based on text visibility */
+}
+
+#lesson-list li:nth-of-type(1){
+     /* Change to your desired color */
+}
+
+/* Second lesson name */
+#lesson-list li:nth-of-type(2){
+    background-color: #f4efef; /* Change to your desired color */
+    border-radius: 15px;
+    overflow:hidden;
+}
+
+/* First lesson name */
+#lesson-list li:nth-of-type(1) .lesson-name {
+    color: #000000; /* Change to your desired color */
+}
+
+/* Second lesson name */
+#lesson-list li:nth-of-type(2) .lesson-name {
+    color: #000000; /* Change to your desired color */
+}
+
+
+
+.lesson-schedule .lesson-time {
+    font-size: 48px; /* Smaller font for time if needed */
+}
+
+
 #lesson-list {
+    font-size: 30px;
     margin-top: -100px;
     padding-left: 0;
     list-style: none;
@@ -91,34 +117,23 @@ body, html {
     margin-bottom: 5px;
 }
 
-.lesson-name,
-.instructor-name {
-    font-size: 36pt;
-    color: #000;
-    margin-bottom: 3px;
-}
-.instructor-name {
-    text-align: right;
-}
+
 
 /* News Container */
 .news-container {
-    grid-column: 2;
-    grid-row: 2;
+    min-width: 500px; /* Ensures minimum width */
+    width: 810px; /* Ensures consistent width */
+    max-width: 100%; /* Prevents overflow in larger screens */
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    max-width: 100%;
-    overflow: hidden;
 }
 
 /* News Content Positioning */
 #news-content {
+    width: 100%; /* Make sure this also takes up the full width */
     padding-top: 20px;
     font-size: 36px;
-    max-width: 100%;
 }
 
 /* News Item Styling */
@@ -132,21 +147,33 @@ body, html {
 .news-author {
     font-weight: bold;
     margin-bottom: 5px;
-    padding-left: 340px;
+    padding-left: 200px;
     margin-top: -50px;
 }
 
 .news-meta {
+    margin-top: -60px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
 }
 
+.news-time {
+    margin-left: auto;
+    text-align: right; /* Ensures time stays on the right */
+}
+
+.news-date {
+    text-align: left; /* Optional, keeps date on the left */
+}
+
 .news-message {
-    height: 100px; /* Fixed visible height */
+    margin-top: -45px;
+    height: 220px; /* Fixed visible height */
     overflow: hidden; /* Hide any overflow content */
     position: relative;
     white-space: normal;
+    text-align: center;
 }
 
 /* Scrolling Effect for Long Messages */
@@ -154,7 +181,7 @@ body, html {
     display: inline-block;
     height: 100%;
     overflow-y: scroll;
-    animation: scrollTextVertical 15s linear infinite;
+    animation: scrollTextVertical 10s linear infinite;
 }
 
 @keyframes scrollTextVertical {

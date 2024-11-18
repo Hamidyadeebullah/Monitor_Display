@@ -3,35 +3,51 @@ function getQueryParams() {
     const params = new URLSearchParams(window.location.search);
     return {
         aula: params.get('aula'),
-        edificio: params.get('edificio')
+        edificio: params.get('edificio'),
+        classroom: params.get('classroom')  // New parameter for the classroom name
     };
+}
+
+// List of valid classrooms
+const validClassrooms = [
+    'A1-1', 'A1-2', 'A1-3', 'A1-4', 'A1-5', 'A1-6', 'A1-7', 'A1-8',
+    'AS-1', 'AS-2', 'AS-3', 'AS-4', 'AS-5', 'AS-6',
+    'AT-1', 'AT-2', 'AT-3', 'AT-4', 'AT-5', 'AT-6', 'AT-7', 'AT-9', 'AT-10', 'AT-11'
+];
+
+// Function to validate the classroom name
+function isValidClassroom(classroom) {
+    return validClassrooms.includes(classroom);
 }
 
 // Function to fetch and display the classroom name and lesson schedule
 function fetchLessonSchedule() {
-    const { aula, edificio } = getQueryParams();  // Get aula and edificio from the URL
+    const { aula, edificio, classroom } = getQueryParams();  // Get parameters from the URL
 
-    // Ensure the parameters are provided
-    if (!aula || !edificio) {
-        console.error("Missing aula or edificio parameters in the URL");
-        document.getElementById("lesson-list").innerHTML = "<li>Missing aula or edificio parameters in the URL</li>";
+    // Validate classroom parameter
+    if (!classroom || !isValidClassroom(classroom)) {
+        console.error("Invalid or missing 'classroom' parameter in the URL");
+        document.getElementById("lesson-list").innerHTML = "<li>Invalid or missing 'classroom' parameter</li>";
         return;
     }
 
-    // Construct the API URL with the query parameters (through Nginx)
+    // Ensure the aula and edificio parameters are provided
+    if (!aula || !edificio) {
+        console.error("Missing 'aula' or 'edificio' parameters in the URL");
+        document.getElementById("lesson-list").innerHTML = "<li>Missing 'aula' or 'edificio' parameters</li>";
+        return;
+    }
+
+    // Construct the API URL with the aula and edificio query parameters (through Nginx)
     const apiUrl = `http://127.0.0.1:5000/lessons?aula=${encodeURIComponent(aula)}&edificio=${encodeURIComponent(edificio)}`;
+
+    // Update classroom name in the DOM
+    document.getElementById("classroom-name").textContent = classroom;
 
     // Fetch the lesson schedule data from the API
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            // Update classroom name
-            if (data[0] && data[0].classroom_name) {
-                document.getElementById("classroom-name").textContent = data[0].classroom_name;
-            } else {
-                document.getElementById("classroom-name").textContent = "Classroom info not available";
-            }
-
             // Update lesson schedule
             const lessonList = document.getElementById("lesson-list");
             lessonList.innerHTML = ""; // Clear previous lessons
@@ -51,23 +67,16 @@ function fetchLessonSchedule() {
         .catch(error => {
             console.error("Unable to fetch the data:", error);
             const lessonList = document.getElementById("lesson-list");
-            lessonList.innerHTML = "<li>No classes available</li>";
+            lessonList.innerHTML = '<li class="no-classes">No classes available</li>';
         });
 }
-
-// Optional function for fetching Telegram news (can be enabled later if needed)
-// function fetchTelegramNews() { /* Telegram news fetch logic here */ }
-
 // Function to start periodic refresh every 15 seconds
 function startAutoRefresh() {
     // Initial fetch when the page loads
     fetchLessonSchedule();
-    // fetchTelegramNews(); // Uncomment if you want to fetch Telegram news as well
-
     // Set an interval to refresh every 15 seconds (15000 milliseconds)
     setInterval(() => {
         fetchLessonSchedule();
-        // fetchTelegramNews(); // Uncomment if you want to fetch Telegram news as well
     }, 15000);
 }
 

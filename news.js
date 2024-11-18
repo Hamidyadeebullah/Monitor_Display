@@ -4,9 +4,8 @@ function fetchLatestNews() {
         .then(data => {
             const messages = data.messaggi;
 
-            // Sort messages by date in descending order and get the 5 latest
-            const latestMessages = messages
-                .sort((a, b) => new Date(b.data) - new Date(a.data));
+            // Sort messages by date in descending order
+            const latestMessages = messages.sort((a, b) => new Date(b.data) - new Date(a.data));
 
             displayNews(latestMessages);
         })
@@ -14,6 +13,9 @@ function fetchLatestNews() {
             console.error('Error fetching news:', error);
             document.getElementById("news-content").innerHTML = "<p>Error loading news</p>";
         });
+
+    // Re-fetch the news every 100 seconds
+    setTimeout(fetchLatestNews, 100000); // 10000 ms = 10 seconds
 }
 
 function displayNews(messages) {
@@ -21,13 +23,10 @@ function displayNews(messages) {
     let currentIndex = 0;
 
     function showNextMessage() {
-        // Clear previous content
-        newsContent.innerHTML = "";
-
-        // Get the current message
+        newsContent.innerHTML = ""; // Clear previous content
         const message = messages[currentIndex];
 
-        // Create the HTML structure for the current message
+        // Create HTML structure for the current message
         const messageElement = document.createElement("div");
         messageElement.classList.add("news-item");
 
@@ -39,16 +38,23 @@ function displayNews(messages) {
             </div>
             <div class="news-message">${message.contenuto}</div>
         `;
-
         newsContent.appendChild(messageElement);
 
-        // Apply scrolling effect if content is long
         const newsMessageElement = messageElement.querySelector(".news-message");
-        if (message.contenuto.length > 50) {
-            newsMessageElement.classList.add("scrolling");
-        }
 
-        // Move to the next message or loop back to the first one
+        // Scroll effect for long messages
+        let scrollPosition = 0;
+        const scrollInterval = setInterval(() => {
+            scrollPosition += 1;
+            newsMessageElement.scrollTop = scrollPosition;
+
+            // Stop scrolling when reaching the bottom
+            if (newsMessageElement.scrollTop + newsMessageElement.clientHeight >= newsMessageElement.scrollHeight) {
+                clearInterval(scrollInterval);
+            }
+        }, 50); // Adjust speed by changing this interval (50ms for smoother scroll)
+
+        // Move to the next message after a delay
         currentIndex = (currentIndex + 1) % messages.length;
     }
 
@@ -56,12 +62,10 @@ function displayNews(messages) {
     showNextMessage();
 
     // Loop through messages every 5 seconds
-    setInterval(showNextMessage, 5000);
+    setInterval(showNextMessage, 10000);
 }
 
-
-// Fetch news when the page loads
+// Fetch news when the page loads and set up periodic fetching
 document.addEventListener("DOMContentLoaded", () => {
     fetchLatestNews();
-
 });
